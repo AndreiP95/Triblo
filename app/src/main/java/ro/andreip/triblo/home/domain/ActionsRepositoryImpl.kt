@@ -3,16 +3,18 @@ package ro.andreip.triblo.home.domain
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import ro.andreip.triblo.home.data.localSource.LocalDataSource
-import ro.andreip.triblo.home.data.model.RewardItemDto
+import ro.andreip.triblo.home.data.model.RewardDto
 import javax.inject.Inject
 
-class RewardsRepositoryImpl @Inject constructor(
+class ActionsRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
-) : RewardsRepository {
+) : ActionsRepository {
 
-    private val selectedRewards = MutableStateFlow(emptyList<Pair<RewardItemDto, Int>>())
+    private val selectedRewards = MutableStateFlow(emptyList<Pair<RewardDto, Int>>())
 
-    override suspend fun getAvailableRewardsList(): List<RewardItemDto> = localDataSource.getRewards()
+    override suspend fun getAvailableChallengesList() = localDataSource.getChallenges()
+
+    override suspend fun getAvailableRewardsList() = localDataSource.getRewards()
 
     override fun addSelectedReward(rewardId: String) {
         addRewardToSelectedRewards(rewardId)
@@ -38,7 +40,7 @@ class RewardsRepositoryImpl @Inject constructor(
     // Mock BE operations
     private fun updateRewardToSelectedRewards(rewardId: String, quantity: Int) {
         selectedRewards.update { rewards ->
-            rewards.map { if (it.first.name == rewardId) Pair(it.first, quantity) else it }
+            rewards.map { if (it.first.actionItemDto.name == rewardId) Pair(it.first, quantity) else it }
         }
     }
 
@@ -50,7 +52,7 @@ class RewardsRepositoryImpl @Inject constructor(
     }
 
     private fun removeRewardFromSelectedRewards(rewardId: String) {
-        selectedRewards.update { it.filter { it.first.name == rewardId } }
+        selectedRewards.update { it.filter { it.first.actionItemDto.name == rewardId } }
     }
 
 }

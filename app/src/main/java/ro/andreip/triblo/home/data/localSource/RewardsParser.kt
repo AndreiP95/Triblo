@@ -7,13 +7,13 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okio.IOException
-import ro.andreip.triblo.home.data.model.RewardItemDto
+import ro.andreip.triblo.home.data.model.ActionItemDto
 
 
-internal suspend fun parseJSONWithGson(context: Context, filename: String): List<RewardItemDto> {
+internal suspend fun parseJSONWithGson(context: Context, filename: String): List<ActionItemDto> {
     return loadJSONFromAsset(context, filename)?.let {
         val gson = Gson()
-        val result = gson.fromJson<List<RewardItemDto>>(it)
+        val result = gson.fromJson<List<ActionItemDto>>(it)
         Log.d("Result", result?.toString() ?: "nimic")
         result
     } ?: emptyList()

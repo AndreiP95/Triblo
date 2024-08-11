@@ -20,11 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ro.andreip.triblo.R
-import ro.andreip.triblo.home.presenter.model.RewardsBo
+import ro.andreip.triblo.home.presenter.model.ActionBo
 
 @Composable
 fun Item(
-    reward: RewardsBo,
+    reward: ActionBo,
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
 ) {
@@ -51,8 +51,7 @@ fun Item(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(text = "Points: ", style = MaterialTheme.typography.bodyMedium)
-                Text(text = reward.points.toString(), style = MaterialTheme.typography.bodyLarge)
+                Text(text = "Points: ${reward.points}", style = MaterialTheme.typography.bodyMedium)
             }
 
             // TODO -> Add description
@@ -64,7 +63,7 @@ fun Item(
 @Preview
 @Composable
 fun ItemPreview() {
-    val rewardsBo = RewardsBo(
+    val ActionBo = ActionBo(
         name = "Product",
         points = 15.0,
         image = "",
@@ -73,6 +72,6 @@ fun ItemPreview() {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        repeat(times = 4) { time -> Item(reward = rewardsBo, modifier = Modifier, time % 2 == 1) }
+        repeat(times = 4) { time -> Item(reward = ActionBo, modifier = Modifier, time % 2 == 1) }
     }
 }
