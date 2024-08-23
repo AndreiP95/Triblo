@@ -17,7 +17,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "ro.andreip.triblo.HiltTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -54,6 +55,9 @@ android {
 
 dependencies {
 
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,19 +66,22 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.hilt.android)
     implementation(libs.moshi)
     implementation(libs.gson)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.showkaseAnnotation)
-    ksp(libs.hilt.compiler)
+    kspDebug(libs.showkaseProccessor)
     testImplementation(libs.junit)
+    testImplementation(libs.hilt.android.testing)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspTest(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
     debugImplementation(libs.showkase)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    kspDebug(libs.showkaseProccessor)
 }
