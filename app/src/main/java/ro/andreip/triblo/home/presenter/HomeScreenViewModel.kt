@@ -36,7 +36,9 @@ class HomeScreenViewModel @Inject constructor(
             HomeScreenAction.ScreenStarted -> {
                 viewModelScope.launch {
                     onResult(HomeScreenResult.RewardsResult(getRewards().map { rewardDtoToRewardBoMapper.map(it) }))
-                    onResult(HomeScreenResult.ChallengesResult(getChallenges().map { challengeDtoToChallengeBoMapper.map(it) }))
+                    onResult(HomeScreenResult.ChallengesResult(
+                        getChallenges().map { challengeDtoToChallengeBoMapper.map(it) })
+                    )
                 }
             }
         }
