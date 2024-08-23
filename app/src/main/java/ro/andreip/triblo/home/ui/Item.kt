@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ro.andreip.triblo.R
@@ -25,11 +27,13 @@ import ro.andreip.triblo.home.presenter.model.ActionBo
 @Composable
 fun Item(
     reward: ActionBo,
+    tag : String,
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
 ) {
     Column(
         modifier = modifier
+            .semantics { testTag = tag }
             .wrapContentSize()
             .fillMaxWidth()
             .border(width = 1.dp, color = if (isSelected) Color.Blue else Color.Gray)
@@ -72,6 +76,6 @@ fun ItemPreview() {
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        repeat(times = 4) { time -> Item(reward = ActionBo, modifier = Modifier, time % 2 == 1) }
+        repeat(times = 4) { time -> Item(reward = ActionBo, tag = "", modifier = Modifier, time % 2 == 1) }
     }
 }

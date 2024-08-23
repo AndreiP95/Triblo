@@ -10,11 +10,12 @@ activityCompose = "1.9.1"
 hilt = "2.51"
 moshi = "1.15.1"
 ksp-version = "2.0.0-1.0.24"
-composeBom = "2024.06.00"
+composeBom = "2024.08.00"
 gson = "2.10.1"
 hiltNavCompose = "1.2.0"
-composeMaterial3 = "1.3.0-beta05"
+composeMaterial3 = "1.3.0-rc01"
 showkase = "1.0.3"
+mockk = "1.13.12"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,7 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavCompose" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 moshi = { group = "com.squareup.moshi", name = "moshi", version.ref = "moshi" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 showkase = { group = "com.airbnb.android", name = "showkase", version.ref = "showkase" }

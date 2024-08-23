@@ -59,12 +59,14 @@ private fun Content(homeScreenUIState: HomeScreenUIState) {
 
             CarouselView(
                 title = "Challenges",
+                tag = "Challenges list",
                 actionList = homeScreenUIState.challengesList.map { it.actionBo }
             )
             Spacer(modifier = Modifier.size(24.dp))
 
             CarouselView(
                 title = "Rewards",
+                tag = "Rewards list",
                 actionList = homeScreenUIState.rewardsList.map { it.actionBo }
             )
 
@@ -75,7 +77,11 @@ private fun Content(homeScreenUIState: HomeScreenUIState) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CarouselView(title: String, actionList: List<ActionBo>) {
+private fun CarouselView(
+    title: String,
+    tag: String,
+    actionList: List<ActionBo>
+) {
 
     Text(
         modifier = Modifier
@@ -91,7 +97,12 @@ private fun CarouselView(title: String, actionList: List<ActionBo>) {
     HorizontalUncontainedCarousel(
         state = CarouselState { actionList.count() },
         itemWidth = 120.dp,
-        content = { index -> Item(reward = actionList[index]) },
+        content = { index ->
+            Item(
+                reward = actionList[index],
+                tag = tag,
+            )
+        },
         itemSpacing = 8.dp
     )
 }
